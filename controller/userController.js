@@ -67,11 +67,11 @@ export const Login = async (req, res) => {
                 res.status(200).json(user)
             }
             else {
-                res.status(500).json({ message: "wrong password" })
+                res.status(400).json({ message: "wrong password" })
             }
         }
         else {
-            res.status(500).json({ message: "user not found!" })
+            res.status(404).json({ message: "user not found!" })
         }
     } catch (e) {
         res.status(500).json({ Error: e.message })
