@@ -4,16 +4,16 @@ import UserModel from "../models/userModel.js";
 export const addToCart = async(req,res)=>{
     try {
         const{userId, productId}= req.body;
-      const productToAdd = await ProductModel.findById(productId);
+      const product = await ProductModel.findById(productId);
       let user = await UserModel.findById(userId).populate("cart.product").populate("wishlist.product");
 
       if (user.cart.length == 0) {
-        user.cart.push({productToAdd, quantity:1})
+        user.cart.push({product, quantity:1})
         
       }else{
        let isProductFound = false;
        for (let index = 0; index < user.cart.length; index++) {
-        if (user.cart[index].productToAdd._id.equals(productToAdd._id)) {
+        if (user.cart[index].product._id.equals(product._id)) {
             isProductFound= true;
             
         }
@@ -26,7 +26,7 @@ export const addToCart = async(req,res)=>{
         productInCart.quantity++;
        }
        else{
-        user.cart.push({productToAdd, quantity:1})
+        user.cart.push({product, quantity:1})
        }
       }
       user =await user.save();
@@ -41,16 +41,16 @@ export const addToCart = async(req,res)=>{
 export const addToWishlist = async(req,res)=>{
     try {
         const{userId, productId}= req.body;
-      const productToAdd = await ProductModel.findById(productId);
+      const product = await ProductModel.findById(productId);
       let user = await UserModel.findById(userId).populate("cart.product").populate("wishlist.product");
 
       if (user.wishlist.length == 0) {
-        user.wishlist.push({productToAdd,})
+        user.wishlist.push({product,})
         
       }else{
        let isProductFound = false;
        for (let index = 0; index < user.wishlist.length; index++) {
-        if (user.wishlist[index].productToAdd._id.equals(productToAdd._id)) {
+        if (user.wishlist[index].product._id.equals(product._id)) {
             isProductFound= true;
             
         }
@@ -60,7 +60,7 @@ export const addToWishlist = async(req,res)=>{
         res.status(400).json({message: "Already added"})
        }
        else{
-        user.wishlist.push({productToAdd})
+        user.wishlist.push({product})
        }
       }
       user = await user.save();
