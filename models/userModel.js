@@ -27,10 +27,22 @@ const userSchema = mongoose.Schema({
         required: true,
     },
     cart: [
+        {
+            product:{type: mongoose.Schema.Types.ObjectId,
+                required: true
+            },
+            quantity:{
+                type: Number,
+                required: true
+            }
+        }
 
     ],
-    wishlist: [
-
+    wishlist: [{
+        product:{type: mongoose.Schema.Types.ObjectId,
+            required: true
+        },
+    }
     ]
 })
 
