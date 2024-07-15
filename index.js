@@ -12,7 +12,7 @@ const port = 4200;
 app.use(express.json());
 app.use('/api/users/', userRoutes)
 app.use('/api/products/',productRoutes)
-app.use('/api/cart', cartRoutes)
+app.use('/api/cart/', cartRoutes)
 
 connectDb();
 
