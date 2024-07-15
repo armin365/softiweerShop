@@ -29,7 +29,7 @@ export const addToCart = async(req,res)=>{
         user.cart.push({productToAdd, quantity:1})
        }
       }
-      user = user.save();
+      user =await user.save();
       res.status(200).json(user)
 
     } catch (e) {
@@ -63,7 +63,7 @@ export const addToWishlist = async(req,res)=>{
         user.wishlist.push({productToAdd})
        }
       }
-      user = user.save();
+      user = await user.save();
       res.status(200).json(user)
 
     } catch (e) {

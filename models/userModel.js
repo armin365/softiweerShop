@@ -29,7 +29,8 @@ const userSchema = mongoose.Schema({
     cart: [
         {
             product:{type: mongoose.Schema.Types.ObjectId,
-                required: true
+                required: true,
+                ref: 'products'
             },
             quantity:{
                 type: Number,
@@ -40,7 +41,8 @@ const userSchema = mongoose.Schema({
     ],
     wishlist: [{
         product:{type: mongoose.Schema.Types.ObjectId,
-            required: true
+            required: true,
+            ref: 'products'
         },
     }
     ]
