@@ -11,7 +11,7 @@ export const getUsers = async (req, res) => {
 
 export const getUserById = async (req, res) => {
     try {
-        const user = await UserModel.findById(req.params.id)
+        const user = await UserModel.findById(req.params.id).populate("cart.product").populate("wishlist.product")
         res.status(200).json(user)
     } catch (e) {
         res.status(500).json({ Error: e.message })
