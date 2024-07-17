@@ -3,7 +3,7 @@ import { addToCart, addToWishlist, deletecartItem, deleteWishlisttItem, removeca
 
 const router = express.Router();
 
-router.route('/get').get(getCartproducts)
+router.route('/get').post(getCartproducts)
 router.route('/cart').post(addToCart)
 router.route('/wishlist').post(addToWishlist)
 router.route('/removeCartItem').post(removecartItem)
