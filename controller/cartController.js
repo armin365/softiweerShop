@@ -3,8 +3,13 @@ import UserModel from "../models/userModel.js";
 
 export const getCartproducts = async (req, res) => {
   try {
-      const products = await UserModel.find()
-      res.status(200).json(products)
+    const {userId}= req.body;
+    const user = await UserModel.findById(userId).populate('cart.product');
+      if(user){
+        res.status(200).json({ cart: user.cart });
+      }else{
+        res.status(404).json({ message: 'User not found' });
+      }
   } catch (e) {
       res.status(500).json({ Error: e.message })
   }
