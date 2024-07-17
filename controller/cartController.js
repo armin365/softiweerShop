@@ -1,6 +1,15 @@
 import ProductModel from "../models/productsModel.js";
 import UserModel from "../models/userModel.js";
 
+export const getCartproducts = async (req, res) => {
+  try {
+      const products = await UserModel.find()
+      res.status(200).json(products)
+  } catch (e) {
+      res.status(500).json({ Error: e.message })
+  }
+}
+
 export const addToCart = async(req,res)=>{
     try {
         const{userId, productId}= req.body;
